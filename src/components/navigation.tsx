@@ -1,11 +1,9 @@
 'use client';
 
-import { Suspense } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { ModeToggle } from '@/components/ThemeToggleButton';
-import { GithubStar, GithubStarSkeleton } from '@/components/github-star';
 import { Button } from '@/components/ui/button';
 import { useIsAdmin } from '@/hooks/use-admin';
 import { authClient } from '@/lib/auth-client';
@@ -25,9 +23,6 @@ export function Navigation() {
         BancStack
       </Link>
       <div className="flex items-center gap-2">
-        <Suspense fallback={<GithubStarSkeleton />}>
-          <GithubStar />
-        </Suspense>
         {/* Admin debug link - only visible to confirmed admins */}
         {session && isAdmin === true && (
           <Button variant="outline" size="sm" asChild>
