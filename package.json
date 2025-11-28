@@ -25,7 +25,7 @@
   "scripts": {
     "debug": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build --turbopack",
-    "start": "next start",
+    "start": "next start -p 7897",
     "lint": "eslint",
     "format": "prettier -write .",
     "format:check": "prettier --check .",
