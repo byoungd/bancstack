@@ -4,8 +4,18 @@ import { requireEnv } from '@convex-dev/better-auth/utils';
 import { betterAuth } from 'better-auth';
 import { admin } from 'better-auth/plugins';
 
-import { type GenericCtx } from '@/convex/_generated/server';
+import {
+  type GenericActionCtx,
+  type GenericMutationCtx,
+  type GenericQueryCtx,
+} from 'convex/server';
+import { type DataModel } from '@/convex/_generated/dataModel';
 import { betterAuthComponent } from '@/convex/auth';
+
+type GenericCtx =
+  | GenericActionCtx<DataModel>
+  | GenericMutationCtx<DataModel>
+  | GenericQueryCtx<DataModel>;
 
 const siteUrl = requireEnv('SITE_URL');
 
@@ -28,7 +38,7 @@ export const createAuth = (ctx: GenericCtx) =>
         clientId: process.env.GOOGLE_CLIENT_ID as string,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
         accessType: 'offline',
-        prompt: 'select_account+consent',
+        prompt: 'select_account consent',
       },
     },
     // Simple non-verified email/password to get started
